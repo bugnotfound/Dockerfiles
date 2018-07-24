@@ -11,4 +11,4 @@ RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install metasploit-f
 RUN /etc/init.d/postgresql start && msfdb init && /etc/init.d/postgresql stop
 
 # Default command
-CMD msfdb start && bash
+CMD /etc/init.d/postgresql start && bash -i
