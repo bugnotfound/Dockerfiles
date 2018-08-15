@@ -1,7 +1,9 @@
-FROM ubuntu:latest
+FROM danilonc/keystone
 MAINTAINER danilonc
 
-# Update Kali
+WORKDIR /opt
+
+# Update
 RUN apt-get update -y && apt-get dist-upgrade -y && apt-get autoremove -y
 
 # Install Tools
@@ -9,6 +11,9 @@ RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install build-essent
 
 # Install shellen 
 RUN pip3 install shellen
+
+# Install kcshell
+RUN pip3 install kcshell
 
 # Default command
 CMD /bin/bash
