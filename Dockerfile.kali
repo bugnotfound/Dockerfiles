@@ -4,4 +4,8 @@ MAINTAINER danilonc
 RUN apt-get update -y &&\
     apt-get dist-upgrade -y &&\
     apt-get autoremove -y &&\
+<<<<<<< HEAD
     apt-get install -y command-not-found metasploit-framework python-ipython tmux python-pip python3-pip build-essential spike python-z3 
+=======
+    apt-get install -y command-not-found metasploit-framework python-ipython tmux python-pip python-pip2 build-essential spike python-z3 
+>>>>>>> b0ad97e6b7f49fd6f01eb98e11fba41720300773
