@@ -8,6 +8,11 @@ RUN apt-get update -y &&\
 
 RUN apt-file update && update-command-not-found
 
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# Install oh-my-zsh
+RUN git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git /root/.oh-my-zsh
+RUN cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc
+RUN sed -i -e 's|export ZSH=.*|export ZSH=/root/.oh-my-zsh/|g' /root/.zshrc
+RUN chsh -s $(which zsh) root
 
+# Install pwntools
 RUN pip install pwntools
