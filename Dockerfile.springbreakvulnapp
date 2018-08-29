@@ -1,0 +1,12 @@
+FROM alpine
+MAINTAINER danilonc
+
+RUN apk install openjdk8 maven git curl
+
+WORKDIR /app
+RUN git clone https://github.com/m3ssap0/SpringBreakVulnerableApp.git
+
+WORKDIR /app/SpringBreakVulnerableApp
+EXPOSE 8080
+
+ENTRYPOINT ["mvn", "spring-boot:run"]
