@@ -1,0 +1,18 @@
+FROM nvidia/opencl
+MAINTAINER danilonc
+
+RUN apt-get update -y &&\
+    apt-get dist-upgrade -y &&\
+    apt-get autoremove -y &&\
+    apt-get install -y p7zip-full curl python wget
+
+RUN mkdir /app
+WORKDIR /app
+
+RUN wget https://hashcat.net/files/hashcat-5.1.0.7z && 7z x hashcat-5.1.0.7z
+WORKDIR /app/hashcat-5.1.0/
+RUN curl https://gist.githubusercontent.com/DaniloNC/2be334b5baccb46adbd57fda17e4b0b6/raw/f166cadf1927295c61e9dc3bb697a21a4fce2c74/download_wpa_dicts.sh | bash
+
+RUN wget https://wpa-sec.stanev.org/hc/help_crack.py
+
+CMD python /app/hashcat-5.1.0/help_crack.py -dc 15
