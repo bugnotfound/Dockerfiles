@@ -1,0 +1,15 @@
+FROM danilonc/arch
+LABEL maintainer="danilonc"
+
+# Install hashcat and opencl
+RUN yay -Syyuq --noconfirm \
+    hashcat\
+    opencl-nvidia
+
+# Download all workdlists from wpa-sec.stanev.org/?my_dicts
+RUN sudo mkdir /wordlist && \
+    sudo chmod 777 /wordlist
+WORKDIR /wordlist
+RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -oi 'https.*gz' | xargs -n1  wget
+
+WORKDIR /home/user
