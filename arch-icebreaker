@@ -1,0 +1,13 @@
+FROM danilonc/arch
+
+USER user
+
+RUN yay -S --noconfirm git
+RUN yay -S --noconfirm  yosys-git icestorm-git arachne-pnr-git trellis-git nextpnr-git
+
+RUN mkdir /home/user/src
+WORKDIR /home/user/src
+
+RUN git clone https://github.com/esden/WTFpga.git
+RUN git clone https://github.com/icebreaker-fpga/icebreaker-examples.git
+WORKDIR /home/user/src/WTFpga
