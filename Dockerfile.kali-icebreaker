@@ -1,3 +1,4 @@
+# docker run --rm --privileged  --device=/dev/ttyUSB1 --device=/dev/ttyUSB2 -v /dev/bus/usb:/dev/bus/usb  -it danilonc/kali-wtfpga
 FROM danilonc/kali
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get -y install build-essential clang bison flex libreadline-dev \
