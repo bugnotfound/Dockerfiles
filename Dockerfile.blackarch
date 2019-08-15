@@ -3,5 +3,6 @@ LABEL maintainer="danilonc"
 
 RUN curl https://blackarch.org/strap.sh | sudo sh -
 RUN yay -Suy --noconfirm
+RUN yay -Fy
 
 WORKDIR /home/user
