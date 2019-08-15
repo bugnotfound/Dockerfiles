@@ -2,6 +2,6 @@ FROM danilonc/arch
 LABEL maintainer="danilonc"
 
 RUN curl https://blackarch.org/strap.sh | sudo sh -
-RUN yay -Suy
+RUN yay -Suy --noconfirm
 
 WORKDIR /home/user
