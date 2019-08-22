@@ -1,4 +1,3 @@
-FROM danilonc/kali
+FROM danilonc/blackarch
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && apt-get install -qqy python-pip drozer adb fastboot
-RUN pip install qark
+RUN yay -S drozer qark android-tools --noconfirm
