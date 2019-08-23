@@ -1,3 +1,11 @@
 FROM danilonc/blackarch
 
-RUN yay -Suuyy --noconfirm && yay -S drozer qark android-tools python2-twisted tmux mitmproxy --noconfirm
+# Install packages
+RUN yay -Suuyy --noconfirm && yay -S drozer qark android-tools python2-twisted tmux python-frida-tools --noconfirm
+
+# Download mitmproxy - Temporary as the mitmproxy seems to be broken
+RUN wget https://snapshots.mitmproxy.org/4.0.4/mitmproxy-4.0.4-linux.tar.gz && sudo tar xzvf https://snapshots.mitmproxy.org/4.0.4/mitmproxy-4.0.4-linux.tar.gz  -C /usr/local/bin/ && rm mitmproxy-4.0.4-linux.tar.gz
+
+# Download frida server
+RUN wget https://github.com/frida/frida/releases/download/12.6.16/frida-server-12.6.16-android-arm.xz && unxz frida-server-12.6.16-android-arm.xz
+
