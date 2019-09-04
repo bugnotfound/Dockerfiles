@@ -8,7 +8,11 @@ WORKDIR /wordlist
 RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -oi 'https.*gz' | xargs -n1  wget
 
 # Install hashcat and opencl
-RUN yay -Syyuq --noconfirm \
+RUN yay -Suuyy --noconfirm \
+    basedevel \ 
+    git \
+    &&\
+    yay -Syyuq --noconfirm \
     hashcat \
     opencl-nvidia \
     magic-wormhole
