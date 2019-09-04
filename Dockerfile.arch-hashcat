@@ -5,8 +5,6 @@ LABEL maintainer="danilonc"
 RUN yay -Suy --noconfirm \
     base-devel \ 
     git \
-    &&\
-    yay -Syu --noconfirm \
     hashcat \
     opencl-nvidia \
     magic-wormhole \
