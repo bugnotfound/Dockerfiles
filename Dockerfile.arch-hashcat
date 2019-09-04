@@ -9,7 +9,8 @@ RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -o
 
 # Install hashcat and opencl
 RUN yay -Syyuq --noconfirm \
-    hashcat\
-    opencl-nvidia
+    hashcat \
+    opencl-nvidia \
+    magic-wormhole
 
 WORKDIR /home/user
