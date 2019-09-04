@@ -1,20 +1,28 @@
 FROM danilonc/arch
 LABEL maintainer="danilonc"
 
+# Install hashcat and opencl
+RUN yay -Suy --noconfirm \
+    base-devel \ 
+    git \
+    &&\
+    yay -Syu --noconfirm \
+    hashcat \
+    opencl-nvidia \
+    magic-wormhole \
+    hcxtools \
+    hcxdumptool \
+    john \
+    tcpdump \
+    wireshark-cli
+
 # Download all workdlists from wpa-sec.stanev.org/?my_dicts
 RUN sudo mkdir /wordlist && \
     sudo chmod 777 /wordlist
 WORKDIR /wordlist
 RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -oi 'https.*gz' | xargs -n1  wget
 
-# Install hashcat and opencl
-RUN yay -Suuyy --noconfirm \
-    base-devel \ 
-    git \
-    &&\
-    yay -Syyuq --noconfirm \
-    hashcat \
-    opencl-nvidia \
-    magic-wormhole
+# Download netgear killer and other default psk generators
+RUN git clone https://github.com/soxrok2212/PSKracker.git
 
 WORKDIR /home/user
