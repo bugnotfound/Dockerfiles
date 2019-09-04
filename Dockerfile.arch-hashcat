@@ -6,10 +6,12 @@ RUN yay -Suy --noconfirm \
     base-devel \ 
     git \
     hashcat \
+    hashcat-utils \
     opencl-nvidia \
     magic-wormhole \
     hcxtools \
     hcxdumptool \
+    hcxkeys \
     john \
     tcpdump \
     wireshark-cli
