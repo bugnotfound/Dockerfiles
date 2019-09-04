@@ -9,7 +9,7 @@ RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -o
 
 # Install hashcat and opencl
 RUN yay -Suuyy --noconfirm \
-    basedevel \ 
+    base-devel \ 
     git \
     &&\
     yay -Syyuq --noconfirm \
