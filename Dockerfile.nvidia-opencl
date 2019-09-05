@@ -1,6 +1,6 @@
 FROM nvidia/opencl
 
-RUN DEBIAN_FRONTEND=non-interactive apt-get update -y && apt-get install magic-wormhole tcpdump tshark p7zip-fill -y 
+RUN DEBIAN_FRONTEND=non-interactive apt-get update -y && apt-get install magic-wormhole tcpdump tshark p7zip-full -y 
 
 WORKDIR /opt
 RUN wget https://hashcat.net/files/hashcat-5.1.0.7z && 7z x hashcat-5.1.0.7z && rm -rf hashcat-5.1.0.7z
