@@ -6,8 +6,8 @@ WORKDIR /opt
 RUN wget https://hashcat.net/files/hashcat-5.1.0.7z && 7z x hashcat-5.1.0.7z && rm -rf hashcat-5.1.0.7z
 
 # Download all workdlists from wpa-sec.stanev.org/?my_dicts
-RUN sudo mkdir /wordlist && \
-    sudo chmod 777 /wordlist
+RUN  mkdir /wordlist && \
+     chmod 777 /wordlist
 WORKDIR /wordlist
 RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -oi 'https.*gz' | xargs -n1  wget
 
