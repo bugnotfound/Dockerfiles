@@ -1,6 +1,6 @@
 FROM nvidia/opencl
 
-RUN DEBIAN_FRONTEND=non-interactive apt-get update -y && apt-get install magic-wormhole tcpdump tshark p7zip-full wget curl git -y 
+RUN DEBIAN_FRONTEND=non-interactive apt-get update -y && apt-get install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git -y 
 
 WORKDIR /opt
 RUN wget https://hashcat.net/files/hashcat-5.1.0.7z && 7z x hashcat-5.1.0.7z && rm -rf hashcat-5.1.0.7z
@@ -13,5 +13,9 @@ RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -o
 
 # Download netgear killer and other default psk generators
 RUN git clone https://github.com/soxrok2212/PSKracker.git
+
+# Install hcxtools
+WORKDIR /opt/
+RUN git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && make && make install
 
 WORKDIR /home/user
