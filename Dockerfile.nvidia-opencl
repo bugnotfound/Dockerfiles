@@ -14,6 +14,9 @@ RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -o
 # Download netgear killer and other default psk generators
 RUN git clone https://github.com/soxrok2212/PSKracker.git
 
+# Download ptwiki wordlist
+RUN wget 'https://onedrive.live.com/download?cid=2C3EE39D5D680C6F&resid=2C3EE39D5D680C6F%21107&authkey=ALtom2mXU-8gMUI' -O pt-br_sort_uniq.txt
+
 # Install hcxtools
 WORKDIR /opt/
 RUN git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && make && make install
