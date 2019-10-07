@@ -21,4 +21,23 @@ RUN wget 'https://onedrive.live.com/download?cid=2C3EE39D5D680C6F&resid=2C3EE39D
 WORKDIR /opt/
 RUN git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && make && make install
 
+# Install hashcat tools git
+WORKDIR /opt/
+RUN git clone https://github.com/hashcat/hashcat.git && cd hashcat && make && make install
+
+WORKDIR /opt/
+RUN git clone https://github.com/hashcat/maskprocessor.git && cd maskprocessor/src && make && install -m 755 *.bin /usr/local/bin/
+
+WORKDIR /opt/
+RUN git clone https://github.com/hashcat/hashcat-utils.git && cd hashcat-utils/src && make && install -m 755 *.bin *.pl /usr/local/bin/
+
+WORKDIR /opt/
+RUN git clone https://github.com/hashcat/princeprocessor.git && cd princeprocessor/src && make && install -m 755 *.bin /usr/local/bin/
+
+WORKDIR /opt/
+RUN git clone https://github.com/hashcat/kwprocessor.git && cd kwprocessor && make && install -m 755 kwp /usr/local/bin/
+
+WORKDIR /opt/
+RUN git clone https://github.com/hashcat/statsprocessor.git && cd statsprocessor/src && make && install -m 755 *.bin /usr/local/bin/
+
 WORKDIR /root/
