@@ -1,6 +1,6 @@
 FROM nvidia/opencl
 
-RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git 
+RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2
 
 WORKDIR /opt
 RUN wget https://hashcat.net/files/hashcat-5.1.0.7z && 7z x hashcat-5.1.0.7z && rm -rf hashcat-5.1.0.7z
@@ -15,7 +15,7 @@ RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -o
 RUN git clone https://github.com/soxrok2212/PSKracker.git
 
 # Download ptwiki wordlist
-RUN wget 'https://onedrive.live.com/download?cid=2C3EE39D5D680C6F&resid=2C3EE39D5D680C6F%21107&authkey=ALtom2mXU-8gMUI' -O pt-br_sort_uniq.txt
+RUN aria2c magnet:?xt=urn:btih:RM5672AK4GBORY3RI5E2JR6EJGCUYEHA&dn=uniq_most_common_ptwiki_words.txt&xl=183599639&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce
 
 # Install hcxtools
 WORKDIR /opt/
