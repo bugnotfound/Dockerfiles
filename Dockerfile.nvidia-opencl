@@ -47,4 +47,4 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8  
 
 WORKDIR /root/
-RUN wget https://gist.githubusercontent.com/DaniloNC/33e8c44e3ed669f02ff9def29d61e267/raw/edf3734db4974e3876ffad985ff228871c17fb59/crack_wpa.sh
+RUN wget https://gist.githubusercontent.com/DaniloNC/33e8c44e3ed669f02ff9def29d61e267/raw/5d88836b884167ab59d7dd7afc28a1e1e76ae12c/crack_wpa.sh && chmod a+x crack_wpa.sh
