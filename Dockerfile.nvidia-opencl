@@ -20,6 +20,9 @@ RUN aria2c --seed-time=0 'aria2c 'magnet:?xt=urn:btih:RM5672AK4GBORY3RI5E2JR6EJG
 # Download rockyou.txt
 RUN wget http://downloads.skullsecurity.org/passwords/rockyou.txt.bz2
 
+# Download probable wordlist
+RUN git clone https://github.com/berzerk0/Probable-Wordlists.git
+
 # Install hcxtools
 WORKDIR /opt/
 RUN git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && make && make install
