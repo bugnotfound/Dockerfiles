@@ -46,6 +46,8 @@ RUN git clone https://github.com/hashcat/kwprocessor.git && cd kwprocessor && ma
 WORKDIR /opt/
 RUN git clone https://github.com/hashcat/statsprocessor.git && cd statsprocessor/src && make && install -m 755 *.bin /usr/local/bin/
 
+RUN wget https://raw.githubusercontent.com/ZerBea/hcxtools/master/usefulscripts/hcxgrep.py -O /usr/local/bin/hcxgrep.py && chmod a+x /usr/local/bin/hcxgrep.py
+
 # Set the locale
 #RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8  
