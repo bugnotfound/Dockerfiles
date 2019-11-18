@@ -11,9 +11,9 @@ RUN DEBIAN_FRONTEND=non-interactive apt-get update -y \
 RUN pip3 install jupyterlab jupyter stable-baselines tensorflow-gpu
 
 # jupyter-lab gmaps https://jupyter-gmaps.readthedocs.io/en/latest/install.html
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
-RUN pip3 install gmaps
-RUN jupyter lab build
+#RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+#RUN pip3 install gmaps
+#RUN jupyter lab build
 
 # Create user, add it to sudo group
 RUN useradd -m user && echo user:user | chpasswd && usermod -aG sudo user
