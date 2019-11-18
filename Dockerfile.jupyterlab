@@ -4,11 +4,16 @@ FROM nvidia/opencl
 RUN DEBIAN_FRONTEND=non-interactive apt-get update -y \
     && DEBIAN_FRONTEND=non-interactive apt-get dist-upgrade -y \
     && DEBIAN_FRONTEND=non-interactive apt-get install -y python3-pip build-essential cmake git python3-ipython \
-    ipython3 libopenmpi-dev python3-dev zlib1g-dev sudo \
+    ipython3 libopenmpi-dev python3-dev zlib1g-dev sudo npm nodejs \
     && DEBIAN_FRONTEND=non-interactive apt-get autoremove -y
 
 # Install PIP packages
-RUN pip3 install jupyterlab stable-baselines tensorflow-gpu
+RUN pip3 install jupyterlab jupyter stable-baselines tensorflow-gpu
+
+# jupyter-lab gmaps https://jupyter-gmaps.readthedocs.io/en/latest/install.html
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN pip3 install gmaps
+RUN jupyter lab build
 
 # Create user, add it to sudo group
 RUN useradd -m user && echo user:user | chpasswd && usermod -aG sudo user
