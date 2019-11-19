@@ -9,6 +9,7 @@ RUN DEBIAN_FRONTEND=non-interactive apt-get update -y \
 
 # Install PIP packages
 RUN pip3 install jupyterlab stable-baselines tensorflow-gpu gmaps
+RUN jupyter lab build && jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 # Create user, add it to sudo group
 RUN useradd -m user && echo user:user | chpasswd && usermod -aG sudo user
