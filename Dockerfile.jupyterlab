@@ -12,6 +12,7 @@ RUN pip3 install jupyterlab stable-baselines tensorflow-gpu gmaps
 
 # Create user, add it to sudo group
 RUN useradd -m user && echo user:user | chpasswd && usermod -aG sudo user
+RUN echo -e "user\tALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Default User / Workdir
 USER user
