@@ -1,4 +1,4 @@
-FROM nvidia/cuda
+FROM nvidia/opencl
 
 # Install OS packages
 RUN DEBIAN_FRONTEND=non-interactive apt-get update -y \
