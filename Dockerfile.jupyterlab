@@ -13,7 +13,7 @@ RUN jupyter lab build && jupyter labextension install @jupyter-widgets/jupyterla
 
 # Create user, add it to sudo group
 RUN useradd -m user && echo user:user | chpasswd && usermod -aG sudo user
-RUN echo -e "user\tALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo "user ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Default User / Workdir
 USER user
