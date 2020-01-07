@@ -1,4 +1,4 @@
-FROM kalilinux/kali-linux-docker:latest
+FROM kalilinux/kali-rolling:latest
 MAINTAINER danilonc
 
 RUN apt-get update -y &&\
