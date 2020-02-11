@@ -65,5 +65,8 @@ RUN cd /opt &&\
     cd /opt &&\
     rm -rf hcxtools
 
+# Install croc
+RUN curl https://getcroc.schollz.com | bash
+
 # Default home dir
 WORKDIR /root
