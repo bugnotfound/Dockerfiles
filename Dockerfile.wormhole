@@ -1,9 +1,17 @@
 FROM ubuntu:20.04
 
+# Install apt packages, including magic-wormhole
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && \
-    DEBIAN_FRONTEND=noninteractive apt-get install magic-wormhole sed locales -qqy && \
+    DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -qqy && \
+    DEBIAN_FRONTEND=noninteractive apt-get install magic-wormhole sed locales build-essential cmake pkg-config libssl-dev curl pwgen -qqy && \
     DEBIAN_FRONTEND=noninteractive apt-get autoremove -qqy && \
     rm -rf /var/lib/apt/*
+
+# Install ffsend
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh &&  sh rustup.sh -y  && . $HOME/.cargo/env && cargo install -f ffsend diceware
+
+# Install Croc
+RUN curl https://getcroc.schollz.com | bash
 
 # Set the locale
 RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
@@ -11,3 +19,5 @@ RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8 
+ENV PATH="/root/.cargo/bin/:${PATH}"
+
