@@ -7,10 +7,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8 
 
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update -qqy && \
-    apt-get install magic-wormhole -y && \
-    apt-get autoremove -y \
-    rm -rf /var/lib/apt/lists/*
-    
-ENV DEBIAN_FRONTEND
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && \
+    DEBIAN_FRONTEND=noninteractive apt-get install magic-wormhole -qqy && \
+    DEBIAN_FRONTEND=noninteractive apt-get autoremove -qqy \
+    rm -rf /var/lib/apt/*
