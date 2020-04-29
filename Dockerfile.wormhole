@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 # Install apt packages, including magic-wormhole
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && \
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -qqy && \
-    DEBIAN_FRONTEND=noninteractive apt-get install magic-wormhole sed tmux locales build-essential cmake pkg-config libssl-dev curl pwgen wget -qqy && \
+    DEBIAN_FRONTEND=noninteractive apt-get install magic-wormhole sed tmux iproute2 locales build-essential cmake pkg-config libssl-dev curl pwgen wget -qqy && \
     DEBIAN_FRONTEND=noninteractive apt-get autoremove -qqy && \
     rm -rf /var/lib/apt/*
 
