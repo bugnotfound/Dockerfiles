@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 # Install apt packages, including magic-wormhole
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && \
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -qqy && \
-    DEBIAN_FRONTEND=noninteractive apt-get install magic-wormhole sed locales build-essential cmake pkg-config libssl-dev curl pwgen -qqy && \
+    DEBIAN_FRONTEND=noninteractive apt-get install magic-wormhole sed locales build-essential cmake pkg-config libssl-dev curl pwgen wget -qqy && \
     DEBIAN_FRONTEND=noninteractive apt-get autoremove -qqy && \
     rm -rf /var/lib/apt/*
 
@@ -12,6 +12,9 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh &&  s
 
 # Install Croc
 RUN curl https://getcroc.schollz.com | bash
+
+# Install IPFS
+RUN wget https://dist.ipfs.io/go-ipfs/v0.5.0/go-ipfs_v0.5.0_linux-amd64.tar.gz && tar -xzvf go-ipfs_v0.5.0_linux-amd64.tar.gz  && bash go-ipfs/install.sh && rm -rf go-ipfs go-ipfs_v0.5.0_linux-amd64.tar.gz
 
 # Set the locale
 RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
