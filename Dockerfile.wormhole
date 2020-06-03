@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
 
+# Force cache
+echo 2020-06-03 > /force_cache.txt
+
 # Install apt packages, including magic-wormhole
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && \
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -qqy && \
@@ -15,6 +18,9 @@ RUN curl https://getcroc.schollz.com | bash
 
 # Install IPFS
 RUN wget https://dist.ipfs.io/go-ipfs/v0.5.0/go-ipfs_v0.5.0_linux-amd64.tar.gz && tar -xzvf go-ipfs_v0.5.0_linux-amd64.tar.gz  && bash go-ipfs/install.sh && rm -rf go-ipfs go-ipfs_v0.5.0_linux-amd64.tar.gz
+
+# Install rclone
+curl https://rclone.org/install.sh | sudo bash
 
 # Set the locale
 RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
