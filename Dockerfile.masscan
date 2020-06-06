@@ -12,7 +12,7 @@ RUN mkdir -p /root/src && \
    git clone https://github.com/zmap/zgrab2.git && \
    cd zgrab2 && \
    make && \
-   cp $(readlink -f zgrab2) /usr/local/bin/zgrab2 && \
+   cp cmd/zgrab2/zgrab2 /usr/local/bin/zgrab2 && \
    chmod a+x /user/local/bin/zgrab2 && \
    cd /root && \
    rm -rf /root/src
