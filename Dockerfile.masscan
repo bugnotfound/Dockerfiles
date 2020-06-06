@@ -1,8 +1,18 @@
-FROM kalilinux/kali-linux-docker:latest
+FROM kalilinux/kali-rolling:latest
 MAINTAINER danilonc
 
-# Update Kali
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get autoremove -y
+# Install apt packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install nmap zmap masscan build-essential git make golang -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
-# Install Tools
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install nmap zmap masscan -y
+RUN mkdir -p /root/src && \
+   cd /root/src && \
+   git clone https://github.com/zmap/zgrab2.git && \
+   cd zgrab2 && \
+   make && \
+   cp $(readlink -f zgrab2) /usr/local/bin/zgrab2 && \
+   chmod a+x /user/local/bin/zgrab2 && \
+   cd /root && \
+   rm -rf /root/src
