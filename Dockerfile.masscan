@@ -4,7 +4,7 @@ MAINTAINER danilonc
 # Install apt packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install nmap zmap masscan build-essential git make golang -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install nmap zmap masscan build-essential git make golang jq -y && \
     DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
 
 RUN mkdir -p /root/src && \
