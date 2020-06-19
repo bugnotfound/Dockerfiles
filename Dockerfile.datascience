@@ -1,0 +1,22 @@
+FROM jupyter/datascience-notebook
+
+USER root
+# Install OS packages
+RUN DEBIAN_FRONTEND=non-interactive apt-get update -y \
+    && DEBIAN_FRONTEND=non-interactive apt-get dist-upgrade -y \
+    && DEBIAN_FRONTEND=non-interactive apt-get install -y python3-pip build-essential cmake git python3-ipython \
+    ipython3 libopenmpi-dev python3-dev zlib1g-dev sudo npm nodejs wget\
+    && DEBIAN_FRONTEND=non-interactive apt-get autoremove -y
+
+# Install PIP packages
+RUN python3 -m pip install gmaps
+RUN jupyter nbextension enable --py --sys-prefix gmaps
+
+# Create user, add it to sudo group
+RUN useradd -m user && echo user:user | chpasswd && usermod -aG sudo,users user
+RUN echo "user ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Default User / Workdir
+USER user
+WORKDIR /home/user
+RUN mkdir /home/user/work
