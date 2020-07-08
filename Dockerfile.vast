@@ -1,20 +1,26 @@
 FROM nvidia/cuda
-RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2 tmux vim nvidia-opencl-dev
+
+# Force build without cache
+RUN echo 2020-06-16T19:27:42+00:00 > /forced_build.txt
+
+RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2 tmux vim #nvidia-opencl-dev
 
 # Install croc
 RUN curl https://getcroc.schollz.com | bash
 
 WORKDIR /opt
-RUN wget https://hashcat.net/files/hashcat-5.1.0.7z && 7z x hashcat-5.1.0.7z && rm -rf hashcat-5.1.0.7z
+RUN wget https://hashcat.net/files/hashcat-6.0.0.7z && 7z x hashcat-6.0.0.7z && rm -rf hashcat-6.0.0.7z
 
 # Download all workdlists from wpa-sec.stanev.org/?my_dicts
 RUN  mkdir /wordlist && \
      chmod 777 /wordlist
 WORKDIR /wordlist
-RUN curl https://wpa-sec.stanev.org/\?dicts  | egrep -io 'href[^>]*>' | egrep -oi 'https.*gz' | xargs -n1  wget
+RUN curl -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36' 'https://wpa-sec.stanev.org/?dicts'  | egrep -io 'href[^>]*>' | egrep -oi 'https.*gz' | xargs -n1  wget
 
 # Download netgear killer and other default psk generators
 RUN git clone https://github.com/soxrok2212/PSKracker.git
+
+RUN git clone https://github.com/NotSoSecure/password_cracking_rules.git
 
 # Download ptwiki wordlist
 RUN aria2c --seed-time=0 'aria2c 'magnet:?xt=urn:btih:RM5672AK4GBORY3RI5E2JR6EJGCUYEHA&dn=uniq_most_common_ptwiki_words.txt&xl=183599639&tr=udp://tracker.opentrackr.org:1337/announce''
