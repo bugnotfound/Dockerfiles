@@ -1,7 +1,7 @@
 FROM nvidia/opencl
 
 # Force build without cache
-RUN echo 2020-07-08T09:58:42+00:00 > /forced_build.txt
+RUN echo 2020-07-23T09:24 > /forced_build.txt
 
 RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2 tmux vim #nvidia-opencl-dev
 
@@ -19,6 +19,9 @@ RUN curl -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 
 
 # Download netgear killer and other default psk generators
 RUN git clone https://github.com/soxrok2212/PSKracker.git
+
+# Download Spectrum killer
+RUN git clone https://gist.github.com/DaniloNC/a526b6ad031d959d5888b0cd47dc877d.git /opt/spectrum
 
 RUN git clone https://github.com/NotSoSecure/password_cracking_rules.git
 
