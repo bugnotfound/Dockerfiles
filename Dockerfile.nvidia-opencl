@@ -1,7 +1,7 @@
 FROM nvidia/opencl
 
 # Force build without cache
-RUN echo 2020-07-23T09:24 > /forced_build.txt
+RUN echo 2020-07-31T11:30 > /forced_build.txt
 
 RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2 tmux vim #nvidia-opencl-dev
 
@@ -9,8 +9,7 @@ RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-i
 RUN curl https://getcroc.schollz.com | bash
 
 WORKDIR /opt
-RUN wget https://hashcat.net/files/hashcat-6.0.0.7z && 7z x hashcat-6.0.0.7z && rm -rf hashcat-6.0.0.7z
-
+RUN wget https://hashcat.net/files/hashcat-6.1.1.7z && 7z x hashcat-6.1.1.7z && rm -rf hashcat-6.1.1.7z && ln -s /opt/hashcat-6.1.1/hashcat.bin /usr/local/bin/hashcat
 # Download all workdlists from wpa-sec.stanev.org/?my_dicts
 RUN  mkdir /wordlist && \
      chmod 777 /wordlist
@@ -40,7 +39,7 @@ RUN git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && make && m
 
 # Install hashcat tools git
 WORKDIR /opt/
-RUN git clone https://github.com/hashcat/hashcat.git hashcat-git && cd hashcat-git && make && make install
+RUN git clone https://github.com/hashcat/hashcat.git hashcat-git && cd hashcat-git && make
 
 WORKDIR /opt/
 RUN git clone https://github.com/hashcat/maskprocessor.git && cd maskprocessor/src && make && install -m 755 *.bin /usr/local/bin/
