@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 # Force cache
-RUN echo 2020-07-09 > /force_cache.txt
+RUN echo 2021-01-08 > /force_cache.txt
 
 # Install apt packages, including magic-wormhole
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && \
@@ -11,13 +11,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && \
     rm -rf /var/lib/apt/*
 
 # Install ffsend
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh &&  sh rustup.sh -y  && . $HOME/.cargo/env && cargo install -f ffsend diceware
+# RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh &&  sh rustup.sh -y  && . $HOME/.cargo/env && cargo install -f ffsend diceware
 
 # Install Croc
 RUN curl https://getcroc.schollz.com | bash
 
 # Install IPFS
-RUN wget https://dist.ipfs.io/go-ipfs/v0.5.0/go-ipfs_v0.5.0_linux-amd64.tar.gz && tar -xzvf go-ipfs_v0.5.0_linux-amd64.tar.gz  && bash go-ipfs/install.sh && rm -rf go-ipfs go-ipfs_v0.5.0_linux-amd64.tar.gz
+RUN wget https://dist.ipfs.io/go-ipfs/v0.7.0/go-ipfs_v0.7.0_linux-amd64.tar.gz && tar -xzvf go-ipfs_v0.7.0_linux-amd64.tar.gz  && bash go-ipfs/install.sh && rm -rf go-ipfs go-ipfs_v0.7.0_linux-amd64.tar.gz
 
 # Install rclone
 RUN curl https://rclone.org/install.sh | sudo bash
