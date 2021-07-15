@@ -1,4 +1,4 @@
-FROM nvidia/opencl
+FROM nvidia/cuda:11.4.0-devel-ubuntu20.04
 
 # Force build without cache
 RUN echo 2021-07-15T12:29 > /forced_build.txt
