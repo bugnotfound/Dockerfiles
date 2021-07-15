@@ -3,7 +3,7 @@ FROM nvidia/opencl
 # Force build without cache
 RUN echo 2021-07-15T12:29 > /forced_build.txt
 
-RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2 tmux vim #nvidia-opencl-dev
+RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2 tmux vim pkg-config #nvidia-opencl-dev
 
 # Install croc
 RUN curl https://getcroc.schollz.com | bash
