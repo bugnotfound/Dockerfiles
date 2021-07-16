@@ -1,7 +1,7 @@
 FROM nvidia/cuda:11.4.0-devel-ubuntu20.04
 
 # Force build without cache
-RUN echo 2021-07-15T12:52 > /forced_build.txt
+RUN echo 2021-07-16T17:45 > /forced_build.txt
 
 RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-interactive apt-get -qqy install magic-wormhole tcpdump tshark p7zip-full wget curl cmake build-essential make libssl-dev zlib1g-dev libcurl4-openssl-dev git aria2 tmux vim pkg-config #nvidia-opencl-dev pkgconfig
 
@@ -9,7 +9,7 @@ RUN DEBIAN_FRONTEND=non-interactive apt-get update -qqy && DEBIAN_FRONTEND=non-i
 # RUN curl https://getcroc.schollz.com | bash
 
 WORKDIR /opt
-RUN wget https://hashcat.net/files/hashcat-6.2.2.7z && 7z x hashcat-6.2.2.7z && rm -rf hashcat-6.2.2.7z && ln -s /opt/hashcat-6.2.2/hashcat.bin /usr/local/bin/hashcat
+RUN wget https://hashcat.net/files/hashcat-6.2.3.7z && 7z x hashcat-6.2.3.7z && rm -rf hashcat-6.2.3.7z && ln -s /opt/hashcat-6.2.3/hashcat.bin /usr/local/bin/hashcat
 # Download all workdlists from wpa-sec.stanev.org/?my_dicts
 RUN  mkdir /wordlist && \
      chmod 777 /wordlist
